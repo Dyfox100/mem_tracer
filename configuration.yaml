@@ -1,0 +1,6 @@
+programs_volume:
+  - /Users/dylanfox/Documents/ElasticOS/mem_tracer/programs
+output_volume:
+  - /Users/dylanfox/Documents/ElasticOS/mem_tracer/traces
+sections_to_trace:
+  - writeable

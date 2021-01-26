@@ -1,0 +1,11 @@
+services:
+  tracer:
+    build: .
+    volumes:
+      - ${PROGRAM_VOL}:/programs/
+      - ${OUTPUT_VOL}:/output/
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN

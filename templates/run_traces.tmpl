@@ -1,0 +1,23 @@
+#!/bin/bash
+dir=$(pwd)
+for f in "programs/"*
+do
+  filename="${f##*/}"
+  extension="${f##*.}"
+  if [ "${extension}" = "c" ]
+  then
+    gcc -o  "${filename%.*}.o" "${f}"
+    (./run_program.py ${SECTIONS_TO_TRACE} /pin_bin/pin -t /pin_bin/pinatrace.so -o "${filename}.out" -- "${dir}/${filename%.*}.o" \
+    && mv "${filename}.out.final" "/output/${filename}.out") &
+  elif [ "${extension}" = "py" ]
+  then
+    (./run_program.py ${SECTIONS_TO_TRACE} /pin_bin/pin -t /pin_bin/pinatrace.so -o ${filename}.out -- python3 ${dir}${f} \
+    && mv "${filename}.out.final" "/output/${filename}.out") &
+  else
+    echo "Unknown File Extension on ${f}. Skipping tracing for this file"
+    continue
+  fi
+done
+
+wait $(jobs -p)
+echo "Completed All Traces!"

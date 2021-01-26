@@ -1,0 +1,6 @@
+.ipynb_checkpoints/*
+*.zip
+*.txt
+*.tar.xz
+other_pin_examples_and_docs/*
+python/*

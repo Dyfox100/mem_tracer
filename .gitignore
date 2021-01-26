@@ -1,0 +1,5 @@
+.DS_Store
+traces/*
+programs/*
+run_traces.sh
+docker-compose.yaml
